@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Game, { TGame } from "../game/page";
+import Game from "../../components/game/page";
+import { TGame } from "../models/models";
 
 export type Room = {
   id: number;

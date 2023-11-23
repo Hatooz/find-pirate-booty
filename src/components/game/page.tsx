@@ -1,33 +1,8 @@
 "use client";
 import { useRef, useState } from "react";
+import { GameProps } from "../../app/models/models";
 
-export type TGame = {
-  id: 17;
-  active: boolean;
-  name: string;
-  currentRoom?: number;
-  gameRooms: TGameRoom[];
-};
-
-export type TGameRoom = {
-  id: number;
-  gameId: number;
-  roomId: number;
-  room: TRoom;
-};
-
-export type TRoom = {
-  id: number;
-  possibelDirections: string;
-};
-
-export default function Game({
-  game,
-  callBack,
-}: {
-  game: TGame;
-  callBack: (id: number) => void;
-}) {
+export default function Game({ game, callBack }: GameProps) {
   const [currentResponse, setCurrentResponse] = useState("");
   const ref = useRef<HTMLFormElement>(null);
   const startGame = () => {
@@ -41,7 +16,7 @@ export default function Game({
     }).then((res) => {
       res.json().then((json) => {
         // setCurrentReponse(json.content);
-        callBack(game.id);
+        callBack();
       });
     });
   };
@@ -56,7 +31,7 @@ export default function Game({
     }).then((res) => {
       res.json().then((json) => {
         // setCurrentReponse(json.content);
-        callBack(game.id);
+        callBack();
       });
     });
   };
@@ -96,7 +71,7 @@ export default function Game({
         //   callBack(game.id);
         game = json;
       });
-      callBack(game.id);
+      callBack();
     });
   };
   const playerAction = (formData: FormData) => {
